@@ -13,13 +13,19 @@ const SignUp = () => {
     const form = e.target;
     const formData = new FormData(form);
 
-    const { email, password, ...userProfile } = Object.fromEntries(
+    const { email, password, ...restFormData } = Object.fromEntries(
       formData.entries()
     );
 
     createUser(email, password)
       .then((result) => {
-        console.log(result);
+        const userProfile = {
+          email,
+          ...restFormData,
+          creationTime: result.user.metadata.creationTime,
+          lastSignInTime: result.user.metadata.lastSignInTime,
+          uid: result.user.uid 
+        };
 
         // save user in db
         fetch("http://localhost:3000/users", {
@@ -31,21 +37,20 @@ const SignUp = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             if (data.insertedId) {
               Swal.fire({
-                position: "center center",
+                position: "center",
                 icon: "success",
                 title: "<h1>Congratulations!</h1>",
                 text: "You account created successfully",
                 showConfirmButton: false,
                 timer: 1200,
               });
-              form.reset();
+                form.reset();
             }
           });
       })
-      .catch((error) => console.dir(error));
+      .catch((error) => console.log(error));
   };
   return (
     <div className="card bg-base-100 w-full max-w-sm mx-auto my-12 shrink-0 shadow-2xl">

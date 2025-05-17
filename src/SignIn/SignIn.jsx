@@ -15,9 +15,7 @@ const SignIn = () => {
     const password = formData.get("password");
 
     signInUser(email, password)
-      .then((result) => {
-        console.log(result);
-      })
+      .then(() => {})
       .catch((error) => console.dir(error));
 
     form.reset();

@@ -24,7 +24,7 @@ const CoffeeCard = ({ coffee, initialCoffees, setinitialCoffees }) => {
             .then((data) => {
               if (data.deletedCount) {
                 Swal.fire({
-                  position: "center center",
+                  position: "center",
                   icon: "success",
                   title: "<h1>Deleted!</h1>",
                   text: "Coffee has been deleted",

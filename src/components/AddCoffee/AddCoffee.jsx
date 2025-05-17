@@ -21,7 +21,7 @@ const AddCoffee = () => {
       .then((data) => {
         if (data.insertedId) {
           Swal.fire({
-            position: "center center",
+            position: "center",
             icon: "success",
             title: "<h1>Congratulations!</h1>",
             text: "Coffee Added Successfully",
