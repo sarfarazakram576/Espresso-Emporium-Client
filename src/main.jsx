@@ -11,7 +11,8 @@ import SignIn from "./SignIn/SignIn.jsx";
 import SignUp from "./components/SignUp/SignUp.jsx";
 import AuthProvider from "./Authentication/AuthProvider.jsx";
 import Users from "./components/Users/Users.jsx";
-import UserDetails from "./components/AddCoffee/UserDetails/UserDetails.jsx";
+import UserDetails from "./components/UserDetails/UserDetails.jsx";
+import EditUser from "./components/EditUser/EditUser.jsx";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,8 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("https://espresso-emporium-server-sarfaraz.vercel.app/coffees"),
+        loader: () =>
+          fetch("https://espresso-emporium-server-sarfaraz.vercel.app/coffees"),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -35,7 +37,9 @@ const router = createBrowserRouter([
       {
         path: "/updateCoffee/:id",
         loader: ({ params }) =>
-          fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/coffees/${params.id}`),
+          fetch(
+            `https://espresso-emporium-server-sarfaraz.vercel.app/coffees/${params.id}`
+          ),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -46,7 +50,9 @@ const router = createBrowserRouter([
       {
         path: "/coffeeDetails/:id",
         loader: ({ params }) =>
-          fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/coffees/${params.id}`),
+          fetch(
+            `https://espresso-emporium-server-sarfaraz.vercel.app/coffees/${params.id}`
+          ),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -64,7 +70,8 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        loader: () => fetch("https://espresso-emporium-server-sarfaraz.vercel.app/users"),
+        loader: () =>
+          fetch("https://espresso-emporium-server-sarfaraz.vercel.app/users"),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -75,13 +82,28 @@ const router = createBrowserRouter([
       {
         path: "/userDetails/:id",
         loader: ({ params }) =>
-          fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/users/${params.id}`),
+          fetch(
+            `https://espresso-emporium-server-sarfaraz.vercel.app/users/${params.id}`
+          ),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
           </div>
         ),
         Component: UserDetails,
+      },
+      {
+        path: "/editUser/:id",
+        loader: ({ params }) =>
+          fetch(
+            `https://espresso-emporium-server-sarfaraz.vercel.app/users/${params.id}`
+          ),
+        hydrateFallbackElement: (
+          <div className="h-screen flex justify-center items-center">
+            <span className="loading loading-infinity loading-xl"></span>
+          </div>
+        ),
+        Component: EditUser,
       },
     ],
   },
