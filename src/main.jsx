@@ -20,7 +20,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        loader: () => fetch("http://localhost:3000/coffees"),
+        loader: () => fetch("https://espresso-emporium-server-sarfaraz.vercel.app/coffees"),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       {
         path: "/updateCoffee/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/coffees/${params.id}`),
+          fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/coffees/${params.id}`),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
       {
         path: "/coffeeDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/coffees/${params.id}`),
+          fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/coffees/${params.id}`),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/users",
-        loader: () => fetch("http://localhost:3000/users"),
+        loader: () => fetch("https://espresso-emporium-server-sarfaraz.vercel.app/users"),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
       {
         path: "/userDetails/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/users/${params.id}`),
+          fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/users/${params.id}`),
         hydrateFallbackElement: (
           <div className="h-screen flex justify-center items-center">
             <span className="loading loading-infinity loading-xl"></span>

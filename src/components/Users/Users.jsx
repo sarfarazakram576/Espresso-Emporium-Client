@@ -21,14 +21,14 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // First delete from Firebase
-        fetch(`http://localhost:3000/api/users/${user.uid}`, {
+        fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/api/users/${user.uid}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((fbData) => {
             console.log(fbData)
             // Then delete from MongoDB
-            fetch(`http://localhost:3000/users/${user._id}`, {
+            fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/users/${user._id}`, {
               method: "DELETE",
             })
               .then((res) => res.json())

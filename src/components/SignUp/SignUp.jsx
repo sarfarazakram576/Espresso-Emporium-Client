@@ -28,7 +28,7 @@ const SignUp = () => {
         };
 
         // save user in db
-        fetch("http://localhost:3000/users", {
+        fetch("https://espresso-emporium-server-sarfaraz.vercel.app/users", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
