@@ -24,7 +24,7 @@ const Products = ({ coffees }) => {
           </button>
         </Link>
 
-        {initialCoffees.length ? (
+        {initialCoffees && initialCoffees.length ? (
           <div className="grid gap-4 grid-cols-1 md:grid-cols-2 items-center xl:max-w-5xl 2xl:max-w-7xl max-w-4xl mx-auto mt-12">
             {initialCoffees.map((coffee) => (
               <CoffeeCard

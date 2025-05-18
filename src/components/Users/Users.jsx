@@ -70,7 +70,7 @@ const Users = () => {
       <h1 className="text-2xl md:text-3xl text-center my-12">
         Total Users: {users.length}
       </h1>
-      {users.length ? (
+      {users && users.length ? (
         <table className="table w-full">
           <thead>
             <tr>
