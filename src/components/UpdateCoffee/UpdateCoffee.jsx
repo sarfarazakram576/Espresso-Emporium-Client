@@ -37,13 +37,13 @@ const UpdateCoffee = () => {
       });
   };
   return (
-    <div>
+    <div className="bg-[url('https://i.ibb.co/L3FdCxR/11.png')] bg-no-repeat bg-center bg-cover">
       <Link to="/">
-        <h1 className="text-3xl md:text-4xl mx-auto max-w-5xl mt-12 flex items-center gap-5">
+        <h1 className="text-3xl md:text-4xl mx-auto max-w-5xl py-12 flex items-center gap-5">
           <BsArrowLeft /> Back to home
         </h1>
       </Link>
-      <div className="bg-[#F4F3F0] mx-auto max-w-5xl py-14 px-10 my-12 rounded-lg">
+      <div className="bg-[#F4F3F0] mx-auto max-w-5xl py-14 px-10 mb-12 rounded-lg">
         <h1 className="text-center text-4xl md:text-5xl my-8 text-[#374151] font-bold">
           Update Existing Coffee Details
         </h1>

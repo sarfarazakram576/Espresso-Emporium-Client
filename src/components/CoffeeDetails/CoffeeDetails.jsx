@@ -5,13 +5,13 @@ import { Link, useLoaderData } from "react-router";
 const CoffeeDetails = () => {
   const coffee = useLoaderData();
   return (
-    <div>
+    <div className="bg-[url('https://i.ibb.co/L3FdCxR/11.png')] bg-no-repeat bg-center bg-cover">
       <Link to="/">
-        <h1 className="text-3xl md:text-4xl mx-auto max-w-3xl mt-12 flex items-center gap-5">
+        <h1 className="text-3xl md:text-4xl mx-auto max-w-3xl py-12 flex items-center gap-5">
           <BsArrowLeft /> Back to home
         </h1>
       </Link>
-      <div className="bg-[#F4F3F0] mx-auto max-w-3xl py-6 px-10 my-12 rounded-lg flex gap-8 justify-center items-center">
+      <div className="bg-[#F4F3F0] mx-auto max-w-3xl py-6 px-10 mb-12 rounded-lg flex gap-8 justify-center items-center">
         <div>
           <img src={coffee.photo} alt="" className="h-80 w-auto" />
         </div>

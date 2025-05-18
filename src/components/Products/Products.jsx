@@ -6,7 +6,6 @@ import { LuCoffee } from "react-icons/lu";
 const Products = ({ coffees }) => {
   const [initialCoffees, setinitialCoffees] = useState(coffees);
 
-
   return (
     <div className="relative my-16 px-4">
       {/* Background overlay ABOVE cards */}
@@ -25,16 +24,22 @@ const Products = ({ coffees }) => {
           </button>
         </Link>
 
-        <div className="grid gap-4 grid-cols-1 md:grid-cols-2 items-center max-w-4xl mx-auto mt-12">
-          {initialCoffees.map((coffee) => (
-            <CoffeeCard
-              coffee={coffee}
-              key={coffee._id}
-              initialCoffees={initialCoffees}
-              setinitialCoffees={setinitialCoffees}
-            />
-          ))}
-        </div>
+        {initialCoffees.length ? (
+          <div className="grid gap-4 grid-cols-1 md:grid-cols-2 items-center xl:max-w-5xl 2xl:max-w-7xl max-w-4xl mx-auto mt-12">
+            {initialCoffees.map((coffee) => (
+              <CoffeeCard
+                coffee={coffee}
+                key={coffee._id}
+                initialCoffees={initialCoffees}
+                setinitialCoffees={setinitialCoffees}
+              />
+            ))}
+          </div>
+        ) : (
+          <h1 className="text-6xl flex justify-center items-center h-40">
+            Can't find data from server
+          </h1>
+        )}
       </div>
     </div>
   );

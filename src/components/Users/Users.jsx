@@ -21,16 +21,22 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // First delete from Firebase
-        fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/api/users/${user.uid}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://espresso-emporium-server-sarfaraz.vercel.app/api/users/${user.uid}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((fbData) => {
-            console.log(fbData)
+            console.log(fbData);
             // Then delete from MongoDB
-            fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/users/${user._id}`, {
-              method: "DELETE",
-            })
+            fetch(
+              `https://espresso-emporium-server-sarfaraz.vercel.app/users/${user._id}`,
+              {
+                method: "DELETE",
+              }
+            )
               .then((res) => res.json())
               .then((mongoData) => {
                 if (mongoData.deletedCount || fbData.message) {
@@ -64,53 +70,59 @@ const Users = () => {
       <h1 className="text-2xl md:text-3xl text-center my-12">
         Total Users: {users.length}
       </h1>
-      <table className="table w-full">
-        <thead>
-          <tr>
-            <th>Serial</th>
-            <th>Photo</th>
-            <th>Name</th>
-            <th>Address</th>
-            <th>Phone</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {users.map((user, i) => (
-            <tr key={user._id}>
-              <td>{i + 1}</td>
-              <td>
-                <div className="avatar">
-                  <div className="mask mask-squircle h-12 w-12">
-                    <img src={user.photo} alt="User" />
-                  </div>
-                </div>
-              </td>
-              <td>{user.name}</td>
-              <td>{user.address}</td>
-              <td>{user.phone}</td>
-              <td>
-                <Link to={`/userDetails/${user._id}`}>
-                  <button className="bg-[#D2B48C] mr-1 btn text-lg rounded-sm my-2 px-2.5 text-white">
-                    <IoMdEye />
-                  </button>
-                </Link>
-                <Link to={`/editUser/${user._id}`}>
-                  <button className="bg-[#3C393B] mr-1 btn text-lg rounded-sm my-2 px-2.5 text-white">
-                    <MdEdit />
-                  </button>
-                </Link>
-                <button
-                  onClick={() => handleDelete(user)}
-                  className="bg-[#EA4744] btn text-lg rounded-sm my-2 px-2.5 text-white"
-                >
-                  <MdDelete />
-                </button>
-              </td>
+      {users.length ? (
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>Serial</th>
+              <th>Photo</th>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Phone</th>
+              <th>Actions</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {users.map((user, i) => (
+              <tr key={user._id}>
+                <td>{i + 1}</td>
+                <td>
+                  <div className="avatar">
+                    <div className="mask mask-squircle h-12 w-12">
+                      <img src={user.photo} alt="User" />
+                    </div>
+                  </div>
+                </td>
+                <td>{user.name}</td>
+                <td>{user.address}</td>
+                <td>{user.phone}</td>
+                <td>
+                  <Link to={`/userDetails/${user._id}`}>
+                    <button className="bg-[#D2B48C] mr-1 btn text-lg rounded-sm my-2 px-2.5 text-white">
+                      <IoMdEye />
+                    </button>
+                  </Link>
+                  <Link to={`/editUser/${user._id}`}>
+                    <button className="bg-[#3C393B] mr-1 btn text-lg rounded-sm my-2 px-2.5 text-white">
+                      <MdEdit />
+                    </button>
+                  </Link>
+                  <button
+                    onClick={() => handleDelete(user)}
+                    className="bg-[#EA4744] btn text-lg rounded-sm my-2 px-2.5 text-white"
+                  >
+                    <MdDelete />
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <h1 className="text-6xl flex justify-center items-center h-40">
+          Can't find data from server
+        </h1>
+      )}
     </div>
   );
 };
