@@ -5,7 +5,7 @@ import { MdCall, MdEmail } from "react-icons/md";
 import { FaLocationDot } from "react-icons/fa6";
 const Footer = () => {
   return (
-    <div className='bg-[url("https://i.ibb.co/4nw0yQ5r/13.jpg")] bg-no-repeat bg-center bg-cover py-20 px-4 mt-20'>
+    <div className='bg-[url("https://i.ibb.co/4nw0yQ5r/13.jpg")] bg-no-repeat bg-center bg-cover py-20 px-4 mt-10'>
       <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-16 md:gap-8 max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mx-auto">
         <div className="space-y-4">
           <img

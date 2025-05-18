@@ -7,12 +7,13 @@ import Home from "./components/Home/Home.jsx";
 import AddCoffee from "./components/AddCoffee/AddCoffee.jsx";
 import UpdateCoffee from "./components/UpdateCoffee/UpdateCoffee.jsx";
 import CoffeeDetails from "./components/CoffeeDetails/CoffeeDetails.jsx";
-import SignIn from "./SignIn/SignIn.jsx";
+import SignIn from "./components/SignIn/SignIn.jsx";
 import SignUp from "./components/SignUp/SignUp.jsx";
 import AuthProvider from "./Authentication/AuthProvider.jsx";
 import Users from "./components/Users/Users.jsx";
 import UserDetails from "./components/UserDetails/UserDetails.jsx";
 import EditUser from "./components/EditUser/EditUser.jsx";
+import Error from "./components/Error/Error.jsx";
 
 const router = createBrowserRouter([
   {
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
           </div>
         ),
         Component: EditUser,
+      },
+      {
+        path: "*",
+        Component: Error,
       },
     ],
   },

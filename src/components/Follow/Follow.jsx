@@ -7,7 +7,7 @@ const Follow = () => {
       <h1 className="font-bold text-4xl md:text-5xl text-center my-4 text-[#331A15]">
         Follow on Instagram
       </h1>
-      <div className="max-w-4xl xl:max-w-5xl 2xl:max-w-7xl mt-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-4">
+      <div className="max-w-4xl xl:max-w-5xl 2xl:max-w-7xl px-4 mt-10 mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 items-center gap-4">
         <img
           src="https://i.ibb.co/Z30WM9F/Rectangle-9.png"
           alt=""
