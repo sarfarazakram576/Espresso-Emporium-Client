@@ -64,7 +64,7 @@ const Users = () => {
     <div className="px-4 my-14 max-w-5xl mx-auto">
       <Link to="/">
         <h1 className="text-3xl md:text-4xl my-8 flex items-center gap-5">
-          <BsArrowLeft /> Back to home
+          <BsArrowLeft /> Back to home 
         </h1>
       </Link>
       <h1 className="text-2xl md:text-3xl text-center my-12">
