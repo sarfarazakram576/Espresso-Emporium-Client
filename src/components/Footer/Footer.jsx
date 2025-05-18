@@ -47,14 +47,30 @@ const Footer = () => {
             <FaLocationDot size={20} /> 72, Wall street, King Road, Dhaka
           </p>
         </div>
-        <div className="space-y-4">
+        <div className="space-y-5">
           <h1 className="text-3xl md:text-4xl font-bold text-[#331A15]">
             Connect with Us
           </h1>
-          <input type="text" placeholder="Name" className="block outline-0 bg-white px-4 py-2 rounded-md w-full" />
-          <input type="email" placeholder="Email" className="block outline-0 bg-white px-4 py-2 rounded-md w-full" />
-          <textarea rows="4" placeholder="Message" className="block outline-0 bg-white px-4 py-2 rounded-md w-full"></textarea>
-          <button className="btn rounded-full text-[#331A15] border-2 border-[#331A15] bg-transparent text-xl">Send Message</button>
+          <input
+            type="text"
+            placeholder="Name"
+            className="block bg-white px-4 py-2 rounded-md w-full focus:outline-2 focus:outline-[#E3B577] focus:shadow-xl"
+          />
+
+          <input
+            type="email"
+            placeholder="Email"
+            className="block bg-white px-4 py-2 rounded-md w-full focus:outline-2 focus:outline-[#E3B577] focus:shadow-xl"
+          />
+
+          <textarea
+            rows="4"
+            placeholder="Message"
+            className="block bg-white px-4 py-2 rounded-md w-full focus:outline-2 focus:outline-[#E3B577] focus:shadow-xl"
+          />
+          <button className="btn rounded-full text-[#331A15] border-2 border-[#331A15] bg-transparent text-xl">
+            Send Message
+          </button>
         </div>
       </div>
     </div>
