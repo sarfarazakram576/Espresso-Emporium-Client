@@ -120,7 +120,7 @@ const Users = () => {
         </table>
       ) : (
         <h1 className="text-6xl flex justify-center items-center h-40">
-          Can't find data from server
+          Can't find data from server or there is no users
         </h1>
       )}
     </div>
