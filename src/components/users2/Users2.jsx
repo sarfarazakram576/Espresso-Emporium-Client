@@ -3,7 +3,6 @@ import { BsArrowLeft } from "react-icons/bs";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { Link } from "react-router";
-import Swal from "sweetalert2";
 
 const Users2 = () => {
   const { isPending, isError, error, data: users } = useQuery({
@@ -24,55 +23,6 @@ const Users2 = () => {
   //  .then(data => setUsers(data))
   //     },[])
 
-  const handleDelete = (user) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "This will delete the user from Firebase and MongoDB!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // First delete from Firebase
-        fetch(
-          `https://espresso-emporium-server-sarfaraz.vercel.app/api/users/${user.uid}`,
-          {
-            method: "DELETE",
-          }
-        )
-          .then((res) => res.json())
-          .then((fbData) => {
-            // Then delete from MongoDB
-            fetch(
-              `https://espresso-emporium-server-sarfaraz.vercel.app/users/${user._id}`,
-              {
-                method: "DELETE",
-              }
-            )
-              .then((res) => res.json())
-              .then((mongoData) => {
-                if (mongoData.deletedCount || fbData.message) {
-                  Swal.fire({
-                    position: "center",
-                    icon: "success",
-                    title: "<h1>Deleted!</h1>",
-                    text: "User has been deleted",
-                    showConfirmButton: false,
-                    timer: 1200,
-                  });
-                  const remainingUsers = users.filter(
-                    (u) => u._id !== user._id
-                  );
-                  setUsers(remainingUsers);
-                }
-              });
-          })
-          .catch((err) => console.error(err));
-      }
-    });
-  };
 
   if (isPending) {
   return   <div className="h-[80vh] flex justify-center items-center">
@@ -132,7 +82,6 @@ const Users2 = () => {
                     </button>
                   </Link>
                   <button
-                    onClick={() => handleDelete(user)}
                     className="bg-[#EA4744] btn text-lg rounded-sm my-2 px-2.5 text-white"
                   >
                     <MdDelete />
