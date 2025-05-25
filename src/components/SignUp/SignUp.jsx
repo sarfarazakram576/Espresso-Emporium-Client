@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../../Authentication/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SignUp = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -24,31 +25,46 @@ const SignUp = () => {
           ...restFormData,
           creationTime: result.user.metadata.creationTime,
           lastSignInTime: result.user.metadata.lastSignInTime,
-          uid: result.user.uid 
+          uid: result.user.uid,
         };
 
         // save user in db
-        fetch("https://espresso-emporium-server-sarfaraz.vercel.app/users", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(userProfile),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.insertedId) {
-              Swal.fire({
-                position: "center",
-                icon: "success",
-                title: "<h1>Congratulations!</h1>",
-                text: "You account created successfully",
-                showConfirmButton: false,
-                timer: 1200,
-              });
-                form.reset();
-            }
-          });
+        // fetch("https://espresso-emporium-server-sarfaraz.vercel.app/users", {
+        //   method: "POST",
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        //   body: JSON.stringify(userProfile),
+        // })
+        //   .then((res) => res.json())
+        //   .then((data) => {
+        //     if (data.insertedId) {
+        //       Swal.fire({
+        //         position: "center",
+        //         icon: "success",
+        //         title: "<h1>Congratulations!</h1>",
+        //         text: "You account created successfully",
+        //         showConfirmButton: false,
+        //         timer: 1200,
+        //       });
+        //         form.reset();
+        //     }
+        //   });
+
+        axios.post("https://espresso-emporium-server-sarfaraz.vercel.app/users", userProfile).then((data) => {
+          if (data.data.insertedId) {
+            Swal.fire({
+              position: "center",
+              icon: "success",
+              title: "<h1>Congratulations!</h1>",
+              text: "You account created successfully",
+              showConfirmButton: false,
+              timer: 1200,
+            });
+            form.reset();
+            console.log(data);
+          }
+        });
       })
       .catch((error) => console.log(error));
   };

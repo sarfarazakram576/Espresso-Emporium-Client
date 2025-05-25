@@ -3,6 +3,7 @@ import { Link } from "react-router";
 import { AuthContext } from "../../Authentication/AuthContext";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Swal from "sweetalert2";
+import axios from "axios";
 
 const SignIn = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -31,17 +32,19 @@ const SignIn = () => {
           lastSignInTime: result.user.metadata.lastSignInTime,
         };
 
-        fetch('https://espresso-emporium-server-sarfaraz.vercel.app/users',{
-            method: "PATCH",
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(signInInfo)
-        })
-         .then(res=>res.json())
-         .then(data=> {
-            console.log(data)
-         })
+        // fetch('https://espresso-emporium-server-sarfaraz.vercel.app/users',{
+        //     method: "PATCH",
+        //     headers: {
+        //         'content-type': 'application/json'
+        //     },
+        //     body: JSON.stringify(signInInfo)
+        // })
+        //  .then(res=>res.json())
+        //  .then(()=> {})
+
+          
+      axios.patch('https://espresso-emporium-server-sarfaraz.vercel.app/users', signInInfo)
+      .then((data) =>{console.log(data.data)})
       })
       .catch((error) => console.dir(error));
 

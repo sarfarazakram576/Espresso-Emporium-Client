@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { BsArrowLeft } from "react-icons/bs";
 import { IoMdEye } from "react-icons/io";
 import { MdDelete, MdEdit } from "react-icons/md";
-import { Link, useLoaderData } from "react-router";
+import { Link } from "react-router";
 import Swal from "sweetalert2";
 
-const Users = () => {
-  const initialUsers = useLoaderData();
-  const [users, setUsers] = useState(initialUsers);
+const Users2 = () => {
+  const { isPending, isError, error, data: users } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await fetch(
+        "https://espresso-emporium-server-sarfaraz.vercel.app/users"
+      );
+      return res.json();
+    },
+  });
 
-  // useEffect(() => {
-  //   axios.get("https://espresso-emporium-server-sarfaraz.vercel.app/users").then((data) => console.log(data.data));
-  // }, []);
+  //     const [users, setUsers] = useState([])
+  //     useEffect(()=>{
+
+  // fetch('https://espresso-emporium-server-sarfaraz.vercel.app/users')
+  //  .then(res=>res.json())
+  //  .then(data => setUsers(data))
+  //     },[])
 
   const handleDelete = (user) => {
     Swal.fire({
@@ -25,15 +36,21 @@ const Users = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         // First delete from Firebase
-        fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/api/users/${user.uid}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://espresso-emporium-server-sarfaraz.vercel.app/api/users/${user.uid}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((fbData) => {
             // Then delete from MongoDB
-            fetch(`https://espresso-emporium-server-sarfaraz.vercel.app/users/${user._id}`, {
-              method: "DELETE",
-            })
+            fetch(
+              `https://espresso-emporium-server-sarfaraz.vercel.app/users/${user._id}`,
+              {
+                method: "DELETE",
+              }
+            )
               .then((res) => res.json())
               .then((mongoData) => {
                 if (mongoData.deletedCount || fbData.message) {
@@ -57,6 +74,16 @@ const Users = () => {
     });
   };
 
+  if (isPending) {
+  return   <div className="h-[80vh] flex justify-center items-center">
+      <span className="loading loading-infinity loading-xl"></span>
+    </div>;
+  }
+
+  if (isError) {
+  return   <span>{error.message}</span>
+  }
+
   return (
     <div className="px-4 my-14 max-w-5xl mx-auto">
       <Link to="/">
@@ -64,9 +91,9 @@ const Users = () => {
           <BsArrowLeft /> Back to home
         </h1>
       </Link>
-      <h1 className="text-2xl md:text-3xl text-center my-12">
+      {/* <h1 className="text-2xl md:text-3xl text-center my-12">
         Total Users: {users.length}
-      </h1>
+      </h1> */}
       {users && users.length ? (
         <table className="table w-full">
           <thead>
@@ -124,4 +151,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default Users2;
